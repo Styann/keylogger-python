@@ -1,2 +1,2 @@
 # Keylogger-python
-This keylogger is made for fun, please don't use it illegally
+This keylogger has been made for fun, please don't use it illegally
